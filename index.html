@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Untuk Kamu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
+  <div class="hearts-container"></div>
+
+  <div class="container">
+    <h1 class="gombal"></h1>
+    <p class="sub-gombal">You'll always be in my heart, now and forever.</p>
+  </div>
+
+  <script>
+    const text = "Kamu tahu gak? Hatiku kayak lagu ini...";
+    let i = 0;
+    const speed = 100;
+
+    function typeText() {
+      if (i < text.length) {
+        document.querySelector(".gombal").textContent += text.charAt(i);
+        i++;
+        setTimeout(typeText, speed);
+      }
+    }
+
+    document.querySelector(".gombal").textContent = "";
+    typeText();
+
+    const heartsContainer = document.querySelector('.hearts-container');
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
